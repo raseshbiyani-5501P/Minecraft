@@ -10,7 +10,7 @@ player_object="";
 block_image_object= "";
 
 function player_update(){
-    fabric.Image.fromURL("akki5501P.png",function(Img){
+    fabric.Image.fromURL("player.png",function(Img){
         player_object=Img;
 
      player_object.scaleToWidth(150);
@@ -23,24 +23,24 @@ function player_update(){
 canvas.add(player_object);
 
     }
-    )
+    );
 }
 
 function blocks_update(get_Image){
     fabric.Image.fromURL(get_Image,function(Img){
-        player_object=Img;
+        block_image_object=Img;
 
-     player_object.scaleToWidth(block_image_width);
-     player_object.scaleToHeight(block_image_height);
-     player_object.set({
+     block_image_object.scaleToWidth(block_image_width);
+     block_image_object.scaleToHeight(block_image_height);
+     block_image_object.set({
 
       top: player_y,
       left: player_x  
      });
-canvas.add(player_object);
+canvas.add(block_image_object);
 
     }
-    )
+    );
 }
 
 window.addEventListener ('keydown' , my_keydown);
@@ -53,7 +53,7 @@ if(e.shiftKey == true && keypressed == '80'){
 block_image_width = block_image_width + 10;
 block_image_height = block_image_height + 10;
 document.getElementById("current_width").innerHTML = block_image_width;
-document.getElementById("curren_height").innerHTML = block_image_height;
+document.getElementById("current_height").innerHTML = block_image_height;
 
 }
 
@@ -62,17 +62,17 @@ if(e.shiftKey == true && keypressed == '77'){
     block_image_width = block_image_width - 10;
     block_image_height = block_image_height - 10;
     document.getElementById("current_width").innerHTML = block_image_width;
-    document.getElementById("curren_height").innerHTML = block_image_height;
+    document.getElementById("current_height").innerHTML = block_image_height;
     
     }
 
-if(keypressed == '37'){
+   if(keypressed == '37'){
 
  left();
  console.log("left arrow is pressed");
 }
 
-if(keypressed == '38'){
+  if(keypressed == '38'){
 
     up();
     console.log("up arrow is pressed");
@@ -124,6 +124,53 @@ if(keypressed == '87'){
 
 if(keypressed == '89'){
     blocks_update("yellow_wall.png");
+}
+
+}
+
+function up(){
+
+if(player_y >= 0){
+
+player_y = player_y - block_image_height;
+canvas.remove(player_object);
+player_update();
+}
+
+}
+
+function down(){
+
+if(player_y <=460){
+
+player_y = player_y + block_image_height;
+canvas.remove(player_object);
+player_update();
+
+}
+
+}
+
+function left(){
+
+if(player_x >=0){
+
+player_x = player_x - block_image_width;
+canvas.remove(player_object);
+player_update();
+
+}
+
+}
+
+function right(){
+
+if(player_x <= 850){
+
+player_x = player_x + block_image_width;
+canvas.remove(player_object);
+player_update();
+
 }
 
 }
